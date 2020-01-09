@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 const _model = new Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+    listItem: { type: String, required: true },
+    checkStatus: { type: Boolean, required: true },
     authorId: { type: ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
 
