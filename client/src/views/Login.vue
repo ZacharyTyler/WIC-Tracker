@@ -37,7 +37,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.user.id) {
-      this.$router.push({ name: "home" });
+      this.$router.push({ name: "/listView/" });
     }
   },
   methods: {

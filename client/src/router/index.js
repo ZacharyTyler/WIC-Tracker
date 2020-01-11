@@ -13,7 +13,7 @@ export default new VueRouter({
       component: Login
     },
     {
-      path: '/listView',
+      path: '/listView/',
       name: 'listView',
       // route level code-splitting
       // this generates a separate chunk (listView.[hash].js) for this route

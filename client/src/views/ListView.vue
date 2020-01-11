@@ -21,6 +21,9 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.$store.dispatch("getListItemsById");
+  },
   computed: {},
   methods: {},
   components: {

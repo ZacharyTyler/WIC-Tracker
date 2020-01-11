@@ -42,6 +42,7 @@ export default {
         listItem: this.newListItem,
         checkStatus: false
       };
+      this.$store.dispatch("createListItem", payload);
     }
   },
   components: {}
