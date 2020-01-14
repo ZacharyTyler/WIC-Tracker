@@ -17,6 +17,7 @@ let api = axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
+    list: [],
     listItems: [],
   },
   mutations: {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     setListItems(state, data) {
       state.listItems = data
+    },
+    setList(state, data) {
+      state.list = data
     }
   },
   actions: {
@@ -65,7 +69,16 @@ export default new Vuex.Store({
     },
     //!SECTION
 
-    async getAllListItemsById({ commit }, userId) {
+    async getAllListItems({ commit }) {
+      try {
+        let list = await api.get(`/list/`)
+        commit('setList', list.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async getListItemsById({ commit }, userId) {
       try {
         let list = await api.get(`/list/${userId}`)
         commit('setListItems', list.data)
@@ -77,7 +90,7 @@ export default new Vuex.Store({
     async createListItem({ commit, dispatch }, payload) {
       try {
         let item = await api.post(`/list`, payload)
-        dispatch('getAllListItemsById', payload)
+        dispatch('getListItemsById', payload)
       } catch (error) {
         console.error(error)
       }

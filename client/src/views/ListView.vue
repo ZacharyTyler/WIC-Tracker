@@ -22,6 +22,7 @@ export default {
     return {};
   },
   mounted() {
+    this.$store.dispatch("getAllListItems");
     this.$store.dispatch("getListItemsById");
   },
   computed: {},
