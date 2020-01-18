@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">add a main course</h5>
+          <h5 class="modal-title">Add an Item to Your List</h5>
           <button class="logout-button" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -33,7 +33,9 @@
 export default {
   name: "createItemModal",
   data() {
-    return {};
+    return {
+      newListItem: []
+    };
   },
   computed: {},
   methods: {

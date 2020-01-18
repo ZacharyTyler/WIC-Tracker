@@ -49,7 +49,7 @@ export default new Vuex.Store({
     },
     async login({ commit, dispatch }, creds) {
       try {
-        debugger
+
         let user = await AuthService.Login(creds)
         commit('setUser', user)
         router.push({ name: "listView" })
@@ -90,7 +90,7 @@ export default new Vuex.Store({
     async createListItem({ commit, dispatch }, payload) {
       try {
         let item = await api.post(`/list`, payload)
-        dispatch('getListItemsById', payload)
+        dispatch('getAllListItems', payload)
       } catch (error) {
         console.error(error)
       }

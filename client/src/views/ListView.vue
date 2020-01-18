@@ -2,9 +2,12 @@
   <div class="listView">
     <h1>WIC Tracker</h1>
     <form>
-      <div class="form-check">
+      <div class="form-check" v-for="list in lists" :key="list._id">
         <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
-        <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
+
+        <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
+
+        <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
@@ -23,9 +26,13 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getAllListItems");
-    this.$store.dispatch("getListItemsById");
+    // this.$store.dispatch("getListItemsById");
   },
-  computed: {},
+  computed: {
+    lists() {
+      return this.$store.state.list;
+    }
+  },
   methods: {},
   components: {
     createItemModal
