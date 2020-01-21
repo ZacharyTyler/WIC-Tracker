@@ -90,11 +90,20 @@ export default new Vuex.Store({
     async createListItem({ commit, dispatch }, payload) {
       try {
         let item = await api.post(`/list`, payload)
-        dispatch('getAllListItems', payload)
+        dispatch('getAllListItems')
       } catch (error) {
         console.error(error)
       }
 
+    },
+
+    async deleteListItem({ commit, dispatch }, listId) {
+      try {
+        await api.delete(`/list/${listId}`)
+        dispatch('getAllListItems')
+      } catch (error) {
+        console.error(error)
+      }
     }
 
   }

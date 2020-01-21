@@ -8,6 +8,7 @@
         <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
 
         <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
+        <h5 @click="deleteListItem(list._id)">x</h5>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
@@ -33,7 +34,11 @@ export default {
       return this.$store.state.list;
     }
   },
-  methods: {},
+  methods: {
+    deleteListItem(listId) {
+      this.$store.dispatch("deleteListItem", listId);
+    }
+  },
   components: {
     createItemModal
   }
