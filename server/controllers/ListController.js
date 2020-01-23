@@ -18,15 +18,16 @@ export default class ListController {
 
     async getAll(req, res, next) {
         try {
-            let data = await _listService.find({})
+            let data = await _listService.find({ authorId: req.session.uid })
             return res.send(data)
-        } catch (error) { next(error) }
-
+        }
+        catch (error) { next(error) }
     }
 
     async getById(req, res, next) {
         try {
             let data = await _listService.findById(req.params.id)
+
             if (!data) {
                 throw new Error("Invalid Id")
             }
