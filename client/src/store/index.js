@@ -104,6 +104,15 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
+    },
+
+    async toggleCheckStatus({ commit, dispatch }, list) {
+      try {
+        await api.put(`/list/${list._id}`, list)
+        dispatch('getAllListItems')
+      } catch (error) {
+        console.error(error)
+      }
     }
 
   }

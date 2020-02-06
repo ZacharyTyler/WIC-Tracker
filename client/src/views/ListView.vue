@@ -1,18 +1,37 @@
 <template>
   <div class="listView">
+    <div class="row justify-content-center">
+      <button class="logout-button" @click="logout">Logout</button>
+    </div>
     <h1>WIC Tracker</h1>
-    <form>
-      <div class="form-check" v-for="list in lists" :key="list._id">
-        <input class="form-check-input" type="checkbox" value id="defaultCheck1" />
 
-        <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
+    <div class="form-check" v-for="list in lists" :key="list._id">
+      <input
+        v-if="list.checkStatus"
+        class="form-check-input"
+        type="checkbox"
+        value
+        id="defaultCheck1"
+        @click="toggleCheckStatus(list)"
+        checked
+      />
 
-        <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
+      <input
+        v-else
+        class="form-check-input"
+        type="checkbox"
+        value
+        id="defaultCheck1"
+        @click="toggleCheckStatus(list)"
+      />
 
-        <h5 @click="deleteListItem(list._id)">x</h5>
-      </div>
-      <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+      <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
+
+      <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
+
+      <h5 @click="deleteListItem(list._id)">x</h5>
+    </div>
+
     <button class="create-button" data-toggle="modal" data-target="#createItemModal">Add Item</button>
     <createItemModal />
   </div>
@@ -36,6 +55,15 @@ export default {
     }
   },
   methods: {
+    toggleCheckStatus(list) {
+      if (list.checkStatus == true) {
+        list.checkStatus = false;
+      } else list.checkStatus = true;
+      this.$store.dispatch("toggleCheckStatus", list);
+    },
+    logout() {
+      this.$store.dispatch("logout");
+    },
     deleteListItem(listId) {
       this.$store.dispatch("deleteListItem", listId);
     }
