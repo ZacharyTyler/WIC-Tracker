@@ -1,38 +1,47 @@
 <template>
   <div class="listView">
-    <div class="row justify-content-center">
-      <button class="logout-button" @click="logout">Logout</button>
+    <div class="row justify-content-end mr-1 mt-3">
+      <div class="col">
+        <button class="btn text-danger logout-button" @click="logout">Logout</button>
+      </div>
     </div>
-    <h1>WIC Tracker</h1>
-
-    <div class="form-check" v-for="list in lists" :key="list._id">
-      <input
-        v-if="list.checkStatus"
-        class="form-check-input"
-        type="checkbox"
-        value
-        id="defaultCheck1"
-        @click="toggleCheckStatus(list)"
-        checked
-      />
-
-      <input
-        v-else
-        class="form-check-input"
-        type="checkbox"
-        value
-        id="defaultCheck1"
-        @click="toggleCheckStatus(list)"
-      />
-
-      <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
-
-      <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
-
-      <h5 @click="deleteListItem(list._id)">x</h5>
+    <div class="row">
+      <div class="col">
+        <h1>WIC Tracker</h1>
+      </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-check" v-for="list in lists" :key="list._id">
+          <input
+            v-if="list.checkStatus"
+            class="form-check-input"
+            type="checkbox"
+            value
+            id="defaultCheck1"
+            @click="toggleCheckStatus(list)"
+            checked
+          />
 
+          <input
+            v-else
+            class="form-check-input"
+            type="checkbox"
+            value
+            id="defaultCheck1"
+            @click="toggleCheckStatus(list)"
+          />
+
+          <!-- <ListItems class="list-group-item" v-for="list in lists" :listProp="list" :key="list._id" /> -->
+
+          <label class="form-check-label" for="defaultCheck1">{{list.listItem}}</label>
+
+          <h5 @click="deleteListItem(list._id)">x</h5>
+        </div>
+      </div>
+    </div>
     <button class="create-button" data-toggle="modal" data-target="#createItemModal">Add Item</button>
+    <button class="reset-button" @click="resetList">Reset</button>
     <createItemModal />
   </div>
 </template>
@@ -55,6 +64,7 @@ export default {
     }
   },
   methods: {
+    resetList() {},
     toggleCheckStatus(list) {
       if (list.checkStatus == true) {
         list.checkStatus = false;

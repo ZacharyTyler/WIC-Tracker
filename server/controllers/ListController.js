@@ -56,6 +56,7 @@ export default class ListController {
         }
     }
 
+
     async delete(req, res, next) {
         try {
             await _listService.findOneAndRemove({ _id: req.params.id })
