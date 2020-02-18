@@ -5,20 +5,58 @@
     </div>
     <div class="row align-items-center">
       <div class="col">
-        <form v-if="loginForm" @submit.prevent="loginUser">
-          <input type="email" v-model="creds.email" placeholder="email" />
-          <input type="password" v-model="creds.password" placeholder="password" />
-          <button type="submit">Login</button>
-        </form>
-        <form v-else @submit.prevent="register">
-          <input type="text" v-model="newUser.name" placeholder="name" />
-          <input type="email" v-model="newUser.email" placeholder="email" />
-          <input type="password" v-model="newUser.password" placeholder="password" />
-          <button type="submit">Create Account</button>
-        </form>
-        <div @click="loginForm = !loginForm">
-          <p v-if="loginForm">No account Click to Register</p>
-          <p v-else>Already have an account click to Login</p>
+        <div class="row">
+          <form v-if="loginForm" @submit.prevent="loginUser">
+            <div class="col-12">
+              <input
+                class="text-center mb-1"
+                type="email"
+                v-model="creds.email"
+                placeholder="Email"
+              />
+              <input
+                class="text-center mb-1"
+                type="password"
+                v-model="creds.password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="col-12">
+              <button class="btn btn-success" type="submit">Login</button>
+            </div>
+          </form>
+
+          <form v-else @submit.prevent="register">
+            <div class="col-12">
+              <input class="text-center mb-1" type="text" v-model="newUser.name" placeholder="Name" />
+            </div>
+            <div class="col-12">
+              <input
+                class="text-center mb-1"
+                type="email"
+                v-model="newUser.email"
+                placeholder="Email"
+              />
+
+              <input
+                class="text-center mb-1"
+                type="password"
+                v-model="newUser.password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="col-12">
+              <button class="btn btn-success" type="submit">Create Account</button>
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div @click="loginForm = !loginForm">
+              <p v-if="loginForm">No account Click to Register</p>
+              <p v-else>Already have an account Click to Login</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
